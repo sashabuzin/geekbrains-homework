@@ -1,10 +1,8 @@
 package lesson2;
 
-
-
 public class main {
     public static void main(String[] args) {
-    findMinMaxElements();
+
     }
 
     public static void invertArray() {
@@ -55,4 +53,25 @@ public class main {
         }
     }
 
-}
+
+
+    public static boolean checkBalance(int[] arr) {
+        int leftSum = 0;
+        int rightSum = 0;
+        boolean result = false;
+        if (arr.length > 1) {
+            for (int i = 0; i < arr.length - 1; i++) {
+                leftSum += arr[i];
+                rightSum = 0;
+                for (int j = i+1; j < arr.length; j++) {
+                    rightSum += arr[j];
+                    if ((j == arr.length -1) && (leftSum == rightSum)) {
+                        result = true;
+                    }
+                }
+                }
+        }
+        return result;
+        }
+
+    }
