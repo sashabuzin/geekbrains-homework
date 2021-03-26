@@ -22,9 +22,13 @@ public class Game1 {
                 if (enteredNumber != hiddenNumber) {
                     remainingCountAttempts--;
                     if (remainingCountAttempts > 0) {
-                        System.out.println("Вы не угадали, повторите попытку -> ");
+                        if (enteredNumber < hiddenNumber) {
+                            System.out.println("Вы не угадали, загаданное число больше. Повторите попытку -> ");
+                        } else {
+                            System.out.println("Вы не угадали, загаданное число меньше. Повторите попытку -> ");
+                        }
                     } else {
-                        System.out.println("Вы проиграли :((");
+                        System.out.println("Вы проиграли :(( загаданное число = " + hiddenNumber);
                     }
                 } else {
                     remainingCountAttempts--;
@@ -32,10 +36,10 @@ public class Game1 {
                     isWin = true;
                 }
             }
-            System.out.print("Хотите ли поиграть заново? (Y/N) -> ");
-        } while (scanner.next().toUpperCase().equals("Y"));
+            System.out.print("Хотите ли поиграть заново? (1/0) -> ");
+        } while (scanner.nextInt() == 1);
 
-
+        scanner.close();
     }
 
 }
