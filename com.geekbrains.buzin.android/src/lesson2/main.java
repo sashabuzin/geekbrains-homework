@@ -53,8 +53,6 @@ public class main {
         }
     }
 
-
-
     public static boolean checkBalance(int[] arr) {
         int leftSum = 0;
         int rightSum = 0;
