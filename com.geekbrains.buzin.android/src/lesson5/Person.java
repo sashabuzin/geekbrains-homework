@@ -6,7 +6,7 @@ package lesson5;
         private String email;
         private String telephone;
         private double salary;
-        int age;
+        private int age;
 
         Person(String fullName, String position, String email, String telephone, double salary, int age) {
             this.fullName = fullName;
@@ -15,6 +15,10 @@ package lesson5;
             this.telephone = telephone;
             this.salary = salary;
             this.age = age;
+        }
+
+        public int getAge() {
+            return age;
         }
 
         void printInformationAboutPerson() {
