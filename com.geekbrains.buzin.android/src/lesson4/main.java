@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class main {
     public static char[][] map;
-    public static final int SIZE = 3;
+    public static final int SIZE = 9;
     public static final int DOTS_TO_WIN = 3;
 
     public static final char DOT_EMPTY = '*';
@@ -21,7 +21,7 @@ public class main {
         while (true) {
             humanTurn();
             printMap();
-            if (checkWin0(DOT_X)) {
+            if (checkWin(DOT_X)) {
                 System.out.println("Победил человек");
                 break;
             }
@@ -31,7 +31,7 @@ public class main {
             }
             aiTurn();
             printMap();
-            if (checkWin0(DOT_O)) {
+            if (checkWin(DOT_O)) {
                 System.out.println("Победил AI");
                 break;
             }
@@ -97,15 +97,44 @@ public class main {
         map[x][y] = DOT_O;
     }
 
-    public static boolean checkWin0(char symb) {
-        if(map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
-        if(map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
-        if(map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
-        if(map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
-        if(map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
-        if(map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
-        if(map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-        if(map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
+    public static boolean checkWin(char symb) {
+       int result = 0;
+        for (int offsetX = 0; offsetX <= SIZE - DOTS_TO_WIN; offsetX++) {
+            for (int offsetY = 0; offsetY <= SIZE - DOTS_TO_WIN; offsetY++) {
+
+                result = 0;
+                for (int i = 0; i < DOTS_TO_WIN; i++) {
+                    for (int j = 0; j < DOTS_TO_WIN; j++) {
+                        if (map[i+offsetX][j+offsetY] == symb) result++;
+                        else result = 0;
+                        if (result == DOTS_TO_WIN) return true;
+                    }
+                }
+                result = 0;
+                for (int i = 0; i < DOTS_TO_WIN; i++) {
+                    for (int j = 0; j < DOTS_TO_WIN; j++) {
+                        if (map[j+offsetY][i+offsetX] == symb) result++;
+                        else result = 0;
+                        if (result == DOTS_TO_WIN) return true;
+                    }
+                }
+                result = 0;
+                for (int i = 0; i < DOTS_TO_WIN; i++) {
+                    if (map[i+offsetX][i+offsetY] == symb) result++;
+                    else result = 0;
+                    if (result == DOTS_TO_WIN) return true;
+
+                }
+                result = 0;
+                for (int i = DOTS_TO_WIN - 1; i >= 0; i--) {
+                    if (map[i+offsetX][i+offsetX] == symb) result++;
+                    else result = 0;
+                    if (result == DOTS_TO_WIN) return true;
+
+                }
+            }
+        }
+
         return false;
     }
 
