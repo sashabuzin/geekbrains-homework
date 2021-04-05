@@ -15,7 +15,7 @@ public class Main {
                 "44444@gmail.com", "9804444444", 170000, 45);
 
         for (int i = 0; i < personArray.length; i++) {
-            if (personArray[i].age > 40) {
+            if (personArray[i].getAge() > 40) {
                 personArray[i].printInformationAboutPerson();
             }
         }
