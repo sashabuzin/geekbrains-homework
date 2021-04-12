@@ -15,6 +15,7 @@ public class Main {
             cat.eat(plate);
             System.out.println(cat.getName() + " сыт?: " + cat.isSatiety());
         }
+
         plate.addFood(10);
         plate.info();
     }
