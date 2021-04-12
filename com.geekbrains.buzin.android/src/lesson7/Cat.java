@@ -1,27 +1,37 @@
 package lesson7;
 
-public class Cat extends Animal {
+public class Cat {
+    private String name;
+    private int appetite;
+    private boolean satiety = false;
 
-    protected int maxCatRunDistance = 200;
-    protected int maxCatSwimmingDistance = 0;
-
-    static int catCount = 0;
-
-    Cat(String name) {
+    public Cat(String name, int appetite) {
         this.name = name;
-        this.maxRunDistance = maxCatRunDistance;
-        this.maxSwimmingDistance = maxCatSwimmingDistance;
-        catCount++;
+        this.appetite = appetite;
     }
 
-    @Override
-    public void swimming (int distance) {
-        System.out.println("Кот не умеет плавать");
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int countCreateObject () {
-        return catCount;
+    public int getAppetite() {
+        return appetite;
     }
 
+    public boolean isSatiety() {
+        return satiety;
+    }
+
+    public void setSatiety(boolean satiety) {
+        this.satiety = satiety;
+    }
+
+    public void eat(Plate p) {
+        if (this.appetite <= p.getFood()) {
+            while (!isSatiety()) {
+                p.decreaseFood(appetite);
+                setSatiety(true);
+            }
+        }
+    }
 }
