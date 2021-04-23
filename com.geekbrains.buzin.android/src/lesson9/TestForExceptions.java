@@ -2,14 +2,14 @@ package lesson9;
 
 public class TestForExceptions {
 
-    public int myArrayExceptions (String[][] array){
+    public int myArrayExceptions (String[][] array) throws MyArrayDataException{
         int sumOfNumbers = 0;
             if (is4x4array(array)) {
                 for (int i = 0; i < array.length; i++) {
                     for (int j = 0; j < array[i].length; j++) {
                         if (isParseInt(array[i][j])) {
                             sumOfNumbers += Integer.parseInt(array[i][j]);
-                        }
+                        } else throw new MyArrayDataException("Ошибка в ["+ i + "] [" + j + "] элементе массива");
                     }
                 }
             }
